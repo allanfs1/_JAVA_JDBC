@@ -1,16 +1,19 @@
 package trabalho;
 
+import Alunos.Aluno;
 import com.mysql.jdbc.Driver;
+//import java.awt.List;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class ConexaoBancoDeDados {
-
     private Connection conexao;
     private final String URLDB = "jdbc:mysql://localhost:3306/teste";
     private final String usuario = "root";
@@ -30,10 +33,12 @@ public class ConexaoBancoDeDados {
         Statement inserir;
 
         try {
-            inserir = conexao.createStatement();
-            inserir.execute("INSERT INTO tb_pessoas (nome,dt_data,sexo,rg,cpf) VALUES('2','Allan','200/04/1994','M','456788-9','677899000')");
-        } catch (SQLException ex) {
            
+            inserir = conexao.createStatement(); //PreparedStatement
+            inserir.execute("INSERT INTO tb_Pessoas VALUES(NULL,'Jair','1874/06/2','M','6867854','3468905')");
+            System.out.println("Dados Inseridos com sucesso");
+        } catch (SQLException ex) {
+           System.out.println("Erro de Inseri dados");
         }
     }
 
@@ -71,25 +76,42 @@ public class ConexaoBancoDeDados {
         }
     }
     
-    public void prepareSelect(){
+    public List<Aluno> prepareSelect(){
+        
+          List<Aluno> aluno = new ArrayList<Aluno>();
+          
         try {
-            PreparedStatement psSelect= this.conexao.prepareStatement("Select * from tb_pessoas where id_aluno=?");
-            psSelect.setString(1, "1");
+            PreparedStatement psSelect= this.conexao.prepareStatement("Select * from tb_pessoas");
+           // psSelect.setString(1, "7");
             ResultSet res = psSelect.executeQuery();
             while (res.next()) {
-                System.out.println(res.getString("nome"));
-              
+             Aluno al = new Aluno();   
+            //(res.getString("id_aluno"));     
+             al.setNome(res.getString("nome"));
+             al.setData(res.getString("dt_data"));
+             al.setSexo(res.getBoolean("sexo"));
+             al.setRg(res.getString("rg"));
+             al.setCpf(res.getString("cpf"));
+             System.out.println("Select");
+             aluno.add(al);
             }
             
         } catch (SQLException ex) {
             
         }
         
+        for(int i =0;i<aluno.size();i++)
+            System.out.println(aluno.get(i).getNome());
+            
+        
+        
+        return aluno;
     }
 
     public static void main(String[] args) {
         ConexaoBancoDeDados conexao = new ConexaoBancoDeDados();
+       // conexao.inserir();
         conexao.prepareSelect();
-        //conexao.selecionar();
+       
     }
 }
