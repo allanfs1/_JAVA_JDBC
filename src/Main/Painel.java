@@ -49,7 +49,12 @@ public class Painel extends JFrame{
         {li.get(0).getNome(),li.get(0).getData(),li.get(0).isSexo(),li.get(0).getRg(),li.get(0).getCpf()},
         {li.get(1).getNome(),li.get(1).getData(),li.get(1).isSexo(),li.get(1).getRg(),li.get(1).getCpf()},
         {li.get(2).getNome(),li.get(2).getData(),li.get(2).isSexo(),li.get(2).getRg(),li.get(2).getCpf()},
-        {li.get(3).getNome(),li.get(3).getData(),li.get(3).isSexo(),li.get(3).getRg(),li.get(3).getCpf()}        
+        {li.get(3).getNome(),li.get(3).getData(),li.get(3).isSexo(),li.get(3).getRg(),li.get(3).getCpf()},
+        {li.get(4).getNome(),li.get(4).getData(),li.get(4).isSexo(),li.get(4).getRg(),li.get(4).getCpf()},
+        {li.get(5).getNome(),li.get(5).getData(),li.get(5).isSexo(),li.get(5).getRg(),li.get(5).getCpf()},
+        {li.get(6).getNome(),li.get(6).getData(),li.get(6).isSexo(),li.get(6).getRg(),li.get(6).getCpf()},
+        {li.get(7).getNome(),li.get(7).getData(),li.get(7).isSexo(),li.get(7).getRg(),li.get(7).getCpf()},
+        {li.get(8).getNome(),li.get(8).getData(),li.get(8).isSexo(),li.get(8).getRg(),li.get(8).getCpf()} 
         };
         
         

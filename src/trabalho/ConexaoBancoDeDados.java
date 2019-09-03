@@ -95,7 +95,6 @@ public class ConexaoBancoDeDados {
              al.setSexo(res.getBoolean("sexo"));
              al.setRg(res.getString("rg"));
              al.setCpf(res.getString("cpf"));
-             System.out.println("Select");
              aluno.add(al);
             }
             
