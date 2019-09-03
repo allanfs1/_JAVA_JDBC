@@ -4,13 +4,14 @@ import Alunos.Aluno;
 import com.mysql.jdbc.Driver;
 //import java.awt.List;
 import java.util.List;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.Connection;//Preparar conexão com SGBD. Para fornecer acesso a consultas.
+import java.sql.DriverManager;//conexao com banco de SGBD.
+import java.sql.PreparedStatement;//Execultar consultas em comandos no SGBD.
+import java.sql.ResultSet;//Recuperar dados que foram buscado, por exemplo SELECT.
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 public class ConexaoBancoDeDados {
@@ -23,9 +24,10 @@ public class ConexaoBancoDeDados {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conexao = DriverManager.getConnection(URLDB, usuario, senha);
-             System.out.println("Conecao estabelecida");
+             System.out.println("Conexao estabelecida");
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Erro de Conexão 1728" + e); 
         }
     }
 
@@ -39,6 +41,7 @@ public class ConexaoBancoDeDados {
             System.out.println("Dados Inseridos com sucesso");
         } catch (SQLException ex) {
            System.out.println("Erro de Inseri dados");
+           JOptionPane.showMessageDialog(null,"Erro ao execultar Isert Into 1400" + ex); 
         }
     }
 
@@ -49,7 +52,7 @@ public class ConexaoBancoDeDados {
             comando = conexao.createStatement();
             comando.execute("UPDATE tb_pessoas SET nome ='Eduardo' WHERE id_aluno = 2");
         } catch (SQLException ex) {
-            
+            JOptionPane.showMessageDialog(null,"Erro Update 1729"+ex); 
         }
     }
     public void delete() {
@@ -59,7 +62,7 @@ public class ConexaoBancoDeDados {
             comando = conexao.createStatement();
             comando.execute("delete from tb_pessoas WHERE id_aluno = 3");
         } catch (SQLException ex) {
-           
+           JOptionPane.showMessageDialog(null,"Erro ao Delete 1730"+ex); 
         }
     }
     public void selecionar() {
@@ -72,7 +75,7 @@ public class ConexaoBancoDeDados {
                 System.out.println(res.getString("nome"));
             }
         } catch (SQLException ex) {
-          
+          JOptionPane.showMessageDialog(null,"Erro ao fazer o Select 1800"+ex); 
         }
     }
     
@@ -97,14 +100,12 @@ public class ConexaoBancoDeDados {
             }
             
         } catch (SQLException ex) {
-            
+            JOptionPane.showMessageDialog(null,"Erro de Select 5000"+ex); 
         }
         
-        for(int i =0;i<aluno.size();i++)
-            System.out.println(aluno.get(i).getNome());
+        //for(int i =0;i<aluno.size();i++)
+            //System.out.println(aluno.get(i).getNome());
             
-        
-        
         return aluno;
     }
 
